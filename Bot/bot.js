@@ -4,7 +4,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const TOKEN = "key";
 const bot = new TelegramBot(TOKEN, { polling: true });
 
-const web_link = "linkapp/";
+const web_link = "https://66c26e70b5731c0006cdc0a9--fastidious-bonbon-034523.netlify.app/";
 
 
 bot.onText(/\/start/, (msg) => {
