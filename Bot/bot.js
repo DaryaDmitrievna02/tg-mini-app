@@ -1,15 +1,24 @@
-const { Telegraf } = require("telegraf");
-const TOKEN = "#token";
-const bot = new Telegraf(TOKEN);
 
-const web_link = "#web_site";
+const TelegramBot = require('node-telegram-bot-api');
 
-bot.start((ctx) =>
-  ctx.reply("Привет :))", {
-    reply_markup: {
-      keyboard: [[{ text: "web app", web_app: { url: web_link } }]],
-    },
-  })
-);
+const TOKEN = "key";
+const bot = new TelegramBot(TOKEN, { polling: true });
 
-bot.launch();
+const web_link = "linkapp/";
+
+
+bot.onText(/\/start/, (msg) => {
+  const chatId = msg.chat.id;
+
+  const options = {
+      reply_markup: {
+          inline_keyboard: [
+              [{ text: "Запустить приложение", web_app: { url: web_link } }]
+          ]
+      }
+  };
+
+  bot.sendMessage(chatId, "Нажми на кнопку ниже, чтобы запустить приложение:", options);
+});
+
+bot.startPolling();
